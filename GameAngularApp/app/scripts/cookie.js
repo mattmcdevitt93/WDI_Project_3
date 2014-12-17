@@ -9,9 +9,20 @@ Cookie.checkCookie = function() {
 }
 
 Cookie.generateName = function() {
-  console.log('generate cookie')
-  var user_id = (Math.floor((Math.random() * 1000) + 1))
-  document.cookie = "User=" + user_id;
+  // console.log(User.authData)
+  if (!!User.authData) {
+    console.log('if')
+    var login = User.authData.password.email;
+    login = login.replace(/([.*+?^${}()|\[\]\/\\])/g, "");
+    login = login.replace(/(@)/g, "_");
+    login = login.replace(/(com)/g, "");
+    var user_id = "User=" + login;
+  } else {
+    console.log('else')
+    var user_id = (Math.floor((Math.random() * 1000) + 1))
+    user_id = "User=" + user_id
+  }
+  document.cookie = user_id;
 };
 
 Cookie.getCookie = function(key){
@@ -26,4 +37,8 @@ Cookie.gameToken = function(game_id) {
   } else {
     console.log('ID already set at = ' + Cookie.getCookie('User'))
   }
+};
+
+Cookie.deleteCookie = function(name) {
+    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 };

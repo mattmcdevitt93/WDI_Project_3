@@ -10,35 +10,6 @@ var Game = Game || {};
 //   // Runs the main game loop
 //   // Game._intervalId = setInterval(Game.run, 1000 / Game.fps);
 // });
-Game.pw_check = function () {
-  console.log('--------------');
-  console.log('PW check');
-  data.id = Cookie.getCookie('Game_ID');
-  // var firebase_path = data.id + "/Password";
-  var ref = data.data;
-  var firebase_pw = ref.child('No_spaces');
-
-  var snapshot = ref.once("value", function(snapshot) {
-    console.log(snapshot);
-    var password = snapshot.val();
-    Game.password_logic(password, data.id);
-    debugger
-  });
-  console.log('--------------');
-};
-
-
-Game.password_logic = function (snapshot, cookie) {
-  var pw_field = ("pw_" + cookie);
-  var password = document.getElementById(pw_field).value;
-  console.log(pw_field + ' - ' + password + ' - ' + snapshot);
-    if (snapshot === password) {
-    console.log('correct PW')
-  } else {
-    console.log('You dun Goofed.')
-  };
-};
-
 
 Game.initialize = function() {
   Game.height = 20;

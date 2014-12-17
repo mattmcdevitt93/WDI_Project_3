@@ -25,16 +25,23 @@
     <div class="row">
       <div class="col-md-2 Logo">
       </div>
-      <div class="col-md-8 Header">
+      <div class="col-md-7 Header">
         <ul class="nav nav-pills pull-left">
           <li><a ng-href="#/">Home</a></li>
           <li><a ng-href="#/media">Media</a></li>
           <li><a ng-href="#/lobby">Lobby</a></li>
           <li><a ng-href="#/contact">Contact</a></li>
         </ul>
+        <span id="current_user" class="pull-right">Currently Logged in as:<p id="user_cookie"></p></span>
       </div>
-      <div class="col-md-2 Login">
-        login
+      <div class="col-md-3 Login">
+        <form>
+        <p><input type="text" class="login_field" id="user_email" name="Login_name" placeholder="Email"></p>
+        <p><input type="password" class="login_field" id="user_pw" name="Login_PW" placeholder="Password"></p>
+        <div id="login_tools"><button type="submit" class="btn btn-primary" onclick="User.loginUser()" ng-href="#/">Login</button>
+        <span id="pw_recover" class="pw_reset" onclick="User.recoverEmail()" data-content="Recovery Email will be sent to the address in the field above.  (No Password required)" rel="popover" data-placement="bottom" data-original-title="Account Recovery">  forgot password?</span> -
+        <span onclick="User.createUser()" class="pw_reset" id="createUser" data-content="Enter your details above and get signed in right away." rel="popover" data-placement="bottom" data-original-title="Account Creation">Create Account</span></span></div>
+      </form>
       </div>
     </div>
     <div class="row">
@@ -84,7 +91,7 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
-    <script type="text/javascript" src="https://rawgithub.com/craftyjs/Crafty/release/dist/crafty-min.js"></script>
+    <script src="bower_components/crafty/dist/crafty.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -92,11 +99,14 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/main_list.js"></script>
         <script src="scripts/cookie.js"></script>
+        <script src="scripts/user.js"></script>
+
         <script src="scripts/controllers/home.js"></script>
         <script src="scripts/controllers/lobby.js"></script>
         <script src="scripts/controllers/media.js"></script>
         <script src="scripts/controllers/contact.js"></script>
         <script src="scripts/controllers/game.js"></script>
+
         <script src="scripts/Game_Scripts/main.js"></script>
         <script src="scripts/Game_Scripts/char.js"></script>
         <script src="scripts/Game_Scripts/map.js"></script>

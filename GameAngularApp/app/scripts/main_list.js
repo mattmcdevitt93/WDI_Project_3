@@ -1,8 +1,12 @@
 data = {};
-user = {};
+
+$('#pw_recover').popover({ trigger: "hover" });
+$('#createUser').popover({ trigger: "hover" });
+
 $(document).ready(function() {
   console.log('loaded page');
   Cookie.checkCookie();
+  displayUser();
 });
 
 $(window).bind('hashchange', function() {
@@ -10,6 +14,7 @@ $(window).bind('hashchange', function() {
   console.log('URL change - ' + hash)
   if (hash === '#/lobby') {
     refreshList();
+    createButton();
   }
   if (hash === '#/game') {
     Game.initialize();
@@ -69,5 +74,22 @@ function createRoom () {
     console.log('Room already exists');
   };
 
+}
+
+function displayUser () {
+  var user = Cookie.getCookie('User');
+  var div = document.getElementById('user_cookie')
+  var text = "User: " + user;
+  div.innerHTML = ""
+  div.innerHTML = div.innerHTML + text;
+}
+
+function createButton () {
+  var verified = User.verifiedUser();
+    if (verified === false) {
+    var div = document.getElementById('create_button');
+    var text = '<button type="button" class="btn btn-primary" onclick="createRoom()">Create Room</button>';
+    div.innerHTML = div.innerHTML + text;
+  }
 }
 

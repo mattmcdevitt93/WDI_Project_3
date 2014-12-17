@@ -15,7 +15,7 @@ Game.draw_local_character = function(user) {
   Game.collision = true;
 
   Crafty.sprite("img/char_1.png", {player:[0,0,Game.scale,Game.scale]});
-  Game.character = Crafty.e("Collision, 2D, Canvas, Color, player")
+  Game.character = Crafty.e("Collision, Canvas, Color, player")
     .attr({x: user.current_pos[0] * Game.scale, y: user.current_pos[1] * Game.scale, w: Game.scale, h: Game.scale})
     .checkHits('wall')
     .bind("EnterFrame", Game.enter_frame)
@@ -24,22 +24,25 @@ Game.draw_local_character = function(user) {
     .bind('KeyDown', Game.key_bindings);
 };
 
-Game.enter_frame = function () {};
+Game.enter_frame = function () {
+  // Game.move = 0;
+  // Game.move_test();
+};
 
 Game.exit_frame = function () {
-  Game.move_test();
-  Game.move = 0;
+  // Game.move = 0;
   Game.update_firebase(); // This updates Firebase
 };
 
 Game.hit_wall = function(hitData) {
   Game.collision = false;
   console.log('Collision chk = false');
+  Game.move_resolve();
 };
 
 Game.update_firebase = function () {
   var players_parent = Game.data.child("users");
-  Game.updateObject["user_" + Game.user_token] = {current_pos: [Game.character.x / Game.scale, Game.character.y / Game.scale]};
+  Game.updateObject["user_" + Game.user_token] = {current_pos: [Game.character.x / Game.scale, Game.character.y / Game.scale, Game.stats.health]};
   players_parent.update(Game.updateObject);
 };
 
@@ -53,27 +56,29 @@ Game.move_test = function () {
       } else if (Game.move === 4) {
         Game.character.y = Game.character.y + Game.scale;
       }
-      Game.move_resolve();
     };
 
 Game.move_resolve = function() {
   if(Game.move === 1 && Game.collision === false) {
     Game.character.x = Game.character.x + Game.scale;
+    Game.collision = true;
   }
   if(Game.move === 2 && Game.collision === false) {
     Game.character.x = Game.character.x - Game.scale;
+    Game.collision = true;
   }
   if(Game.move === 3 && Game.collision === false) {
     Game.character.y = Game.character.y + Game.scale;
+    Game.collision = true;
   }
   if(Game.move === 4 && Game.collision === false) {
     Game.character.y = Game.character.y - Game.scale;
+    Game.collision = true;
   }
-  Game.collision = true;
+
 };
 
 Game.key_bindings = function(e) {
-  Game.move = 0;
   if(e.key == Crafty.keys.LEFT_ARROW) {
     Game.move = 1;
   } else if (e.key == Crafty.keys.RIGHT_ARROW) {
@@ -84,8 +89,11 @@ Game.key_bindings = function(e) {
     Game.move = 4;
   } else if (e.key == Crafty.keys.SPACE) {
     Game.move = 5;
-    Game.refresh();
+    Game.stats.health = Game.stats.health - 5;
+    console.log(Game.stats.health);
+    Game.refresh_stats();
   }
+  Game.move_test();
 };
 
 
@@ -121,19 +129,11 @@ Game.draw_firebase_char = function(snapshot) {
     .color("blue");
   }
 
-// make an array or object of all other user_ objects from the snapshot, then remove the object of the local user (prefferable an array of objects because I need to loop through them every time firebase updates)
-
 };
 
 Game.refresh = function(user){
   Crafty('player').each(function(player) {
-    // this.color("green");
-    // console.log(this);
     this.destroy();
-
   });
   Game.draw_local_character(user);
-// FIX THIS
-  // Game.draw_local_character(Game.snapshot);
-  // Game.load_firebase_char(Game.snapshot);
 };
