@@ -61,17 +61,22 @@ function displayList (snapshot) {
 function createRoom () {
   var name = document.getElementById('New_room_name').value;
   var password = document.getElementById('New_room_pw').value;
-  console.log('New Room - ' + name + ' - ' + password)
-  if (-1 === data.snapshot.indexOf(name)) {
+  if (name === "") {
+    var notNull = true
+  } else {
+    var notNull = false
+  }
+  console.log('New Room - ' + name + ' - ' + notNull)
+  if (-1 === data.snapshot.indexOf(name) && notNull === false) {
     Cookie.gameToken(name);
       var ref = 'https://resplendent-inferno-1504.firebaseio.com/' + name;
       data.data = new Firebase(ref);
-      data.data.set({Password: password});
+      data.data.set({Password: password, Host: Cookie.getCookie('User')});
       document.getElementById("New_room_name").value = "";
       document.getElementById("New_room_pw").value = "";
       refreshList();
   } else {
-    console.log('Room already exists');
+    console.log('Room already exists / Blank Input');
   };
 
 }
