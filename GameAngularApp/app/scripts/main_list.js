@@ -53,7 +53,7 @@ function displayList (snapshot) {
   for (var i = 0; i < snapshot.length; i++) {
     var div = document.getElementById('Game_List');
     var game_id = snapshot[i].toString();
-    var text = '<div>Name: ' + snapshot[i] + ' - <a ng-href="#/game" href="#/game" onclick="Cookie.gameToken(\'' + game_id + '\'), Game.pw_check()" class="btn btn-primary">Game</a></div>'
+    var text = '<div class="gameEntry">Name: ' + snapshot[i] + ' - <a ng-href="#/game" href="#/game" onclick="Cookie.gameToken(\'' + game_id + '\'), Game.pw_check()" class="btn btn-primary">Join Game</a></div>'
     div.innerHTML = div.innerHTML + text;
   }
 }
@@ -88,7 +88,7 @@ function createButton () {
   var verified = User.verifiedUser();
     if (verified === false) {
     var div = document.getElementById('create_button');
-    var text = '<button type="button" class="btn btn-primary" onclick="createRoom()">Create Room</button>';
+    var text = '<button type="button" class="btn btn-primary" onclick="createRoom()">Create Room</button> Name: <input type="text" id="New_room_name" name="Room_Name"> Password: <input type="text" id="New_room_pw" name="Room_PW"> ';
     div.innerHTML = div.innerHTML + text;
   }
 }
