@@ -32,21 +32,20 @@
           <li><a ng-href="#/lobby">Lobby</a></li>
           <li><a ng-href="#/contact">Contact</a></li>
         </ul>
-
       </div>
       <div class="col-md-2 Login">
         login
       </div>
     </div>
     <div class="row">
-      <div class="col-md-10 col-md-offset-1" id="game_list">
+      <div class="col-md-10 col-md-offset-1 Body" id="game_list">
       <div ng-view=""></div>
       <!-- Views Go here -->
     </div>
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="">
+      <div class="Footer">
         <h2>Footer</h2>
       </div>
     </div>
@@ -84,13 +83,24 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script type="text/javascript" src="https://rawgithub.com/craftyjs/Crafty/release/dist/crafty-min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/main_list.js"></script>
+        <script src="scripts/cookie.js"></script>
+        <script src="scripts/controllers/home.js"></script>
+        <script src="scripts/controllers/lobby.js"></script>
+        <script src="scripts/controllers/media.js"></script>
+        <script src="scripts/controllers/contact.js"></script>
+        <script src="scripts/controllers/game.js"></script>
+        <script src="scripts/Game_Scripts/main.js"></script>
+        <script src="scripts/Game_Scripts/char.js"></script>
+        <script src="scripts/Game_Scripts/map.js"></script>
+        <script src="scripts/Game_Scripts/map_data.js"></script>
         <!-- endbuild -->
 </body>
 </html>
