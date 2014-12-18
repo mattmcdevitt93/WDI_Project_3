@@ -15,7 +15,7 @@ Game.starting_position = function() {
 Game.draw_local_character = function(user) {
   Game.collision = true;
 
-  Crafty.sprite('../images/char_1.png', {player:[0,0,Game.scale,Game.scale]});
+  Crafty.sprite('../images/Char_1.38f3cfb6.png', {player:[0,0,Game.scale,Game.scale]});
   Game.character = Crafty.e('Collision, Canvas, Color, player')
   .attr({x: user.current_pos[0] * Game.scale, y: user.current_pos[1] * Game.scale, w: Game.scale, h: Game.scale})
   .checkHits('wall')
