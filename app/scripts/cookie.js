@@ -32,7 +32,7 @@ Cookie.getCookie = function(key){
 };
 
 Cookie.gameToken = function(game_id) {
-  if ((Cookie.getCookie('Game_id') !== 'null') || (Cookie.getCookie('Game_id') !== undefined) || (Cookie.getCookie('Game_id') !== null)) {
+  if ((Cookie.getCookie('Game_id') === 'null') || (Cookie.getCookie('Game_id') === undefined) || (Cookie.getCookie('Game_id') === null)) {
     console.log('generate ID cookie');
     document.cookie = 'Game_ID=' + game_id;
   } else {
