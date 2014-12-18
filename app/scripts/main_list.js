@@ -3,6 +3,8 @@ var data = {};
 
 $('#pw_recover').popover({ trigger: 'hover' });
 $('#createUser').popover({ trigger: 'hover' });
+$('#email_icon').popover({ trigger: 'hover' });
+
 
 $(document).ready(function() {
   console.log('loaded page');
