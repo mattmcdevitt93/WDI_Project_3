@@ -111,6 +111,26 @@ div {
   background-image: url("../images/Facebook_icon.png");
   height: 48px;
   width: 48px;
+  float: left;
 }
 
+#LinkedIn_icon {
+  background-image: url("../images/Linked_In_Icon.png");
+  height: 48px;
+  width: 48px;
+  float: left;
+}
 
+#Github_icon {
+  background-image: url("../images/Git_Hub_Icon.png");
+  height: 48px;
+  width: 48px;
+  float: left;
+}
+
+#email_icon {
+  background-image: url("../images/Email_Icon.png");
+  height: 48px;
+  width: 48px;
+  float: left;
+}
