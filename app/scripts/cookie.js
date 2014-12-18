@@ -34,7 +34,9 @@ Cookie.getCookie = function(key){
 Cookie.gameToken = function(game_id) {
   if ((Cookie.getCookie('Game_id') === 'null') || (Cookie.getCookie('Game_id') === undefined) || (Cookie.getCookie('Game_id') === null)) {
     console.log('generate ID cookie');
-    document.cookie = 'Game_ID=' + game_id;
+    var game_token = 'Game_ID=' + game_id;
+    debugger;
+    document.cookie = game_token;
   } else {
     console.log('ID already set at = ' + Cookie.getCookie('User'));
   }
