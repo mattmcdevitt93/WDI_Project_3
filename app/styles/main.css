@@ -107,4 +107,9 @@ div {
   font-size: 14px;
 }
 
+#Facebook_icon {
+  background-image: url("../images/Facebook_icon.png");
+  height: 48px;
+}
+
 
