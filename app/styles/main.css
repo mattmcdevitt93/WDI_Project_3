@@ -68,7 +68,22 @@ div {
     margin-bottom: 5px;
     margin-top: 5px;
 }
+
+.post {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
 /*---------------------------------------*/
+
+#contact_img {
+  background-image: url("../images/Placeholder.png");
+  height: 200px;
+  width: 200px;
+  float: left;
+  margin-right: 10px;
+}
 
 #login_tools {
     background-image: url("../images/dark_brick_wall.png");

@@ -1,4 +1,5 @@
-Cookie = {};
+'use strict';
+var Cookie = {};
 
 Cookie.checkCookie = function() {
   if ((Cookie.getCookie("User") === "null") || (Cookie.getCookie("User") === undefined) || (Cookie.getCookie("User") === null)) {

@@ -1,7 +1,8 @@
-data = {};
+'use strict';
+var data = {};
 
-$('#pw_recover').popover({ trigger: "hover" });
-$('#createUser').popover({ trigger: "hover" });
+$('#pw_recover').popover({ trigger: 'hover' });
+$('#createUser').popover({ trigger: 'hover' });
 
 $(document).ready(function() {
   console.log('loaded page');
@@ -10,7 +11,7 @@ $(document).ready(function() {
 });
 
 $(window).bind('hashchange', function() {
-  hash = window.location.hash;
+  var hash = window.location.hash;
   console.log('URL change - ' + hash)
   if (hash === '#/lobby') {
     refreshList();

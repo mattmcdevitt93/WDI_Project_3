@@ -1,3 +1,4 @@
+'use strict';
 var Game = Game || {};
 
 Game.refresh_map = function(){
@@ -39,11 +40,11 @@ Game.draw_sidebar = function() {
 
 Game.draw_stats = function() {
   Crafty.e("2D, Canvas, Color, stats")
-  .color("red")
+  .color('red')
   .attr({x: 50, y: 200, w: Game.stats.health , h: Game.scale });
 
   Crafty.e("2D, Canvas, Color, stats")
-  .color("grey")
+  .color('grey')
   .attr({x: 150, y: 200, w: (-1 * Game.stats.health) , h: Game.scale });
 };
 
@@ -57,13 +58,14 @@ Game.draw_sel_col = function (map) {
 
 Game.map_check = function(map) {
   var blank = Game.height - map.length;
-  console.log("map height " + map.length + " - " + blank);
+  console.log('map height ' + map.length + ' - ' + blank);
   for (var b = 0; b < blank; b++) {
     map.push([]);
   }
 };
 
 Game.draw_row = function(row, l) {
+  var tile;
   for (var w = 0; w < Game.width; w++) {
     tile = row[w];
     // console.log("w "+ w + ", l " + l + " - tile " + tile);
@@ -82,7 +84,7 @@ Game.draw_row = function(row, l) {
 
 Game.draw_map_void = function(draw_x, draw_y) {
   Crafty.e("2D, Canvas, Color, tile")
-  .color("black")
+  .color('black')
   .attr({x: draw_x, y: draw_y, w: Game.scale , h: Game.scale });
 };
 
@@ -90,9 +92,9 @@ Game.draw_map_floor = function(draw_x, draw_y) {
   var r_tile = Math.floor(Math.random() * 3);
   // var r_tile = 2;
   // console.log(r_tile);
-  Crafty.sprite("../images/Floor_1.png", {floor:[(r_tile * Game.scale),0,Game.scale,Game.scale]});
-  Crafty.e("2D, Canvas, Color, floor, tile")
-  .color("grey")
+  Crafty.sprite('../images/Floor_1.png', {floor:[(r_tile * Game.scale),0,Game.scale,Game.scale]});
+  Crafty.e('2D, Canvas, Color, floor, tile')
+  .color('grey')
   .attr({x: draw_x, y: draw_y, w: Game.scale , h: Game.scale });
 };
 
@@ -107,7 +109,7 @@ Game.draw_map_wall = function(draw_x, draw_y) {
 
   Crafty.sprite("../images/Wall_1.png", {wall:[0,0,Game.scale,Game.scale]});
   Crafty.e("2D, Canvas, Color, wall, tile")
-  .color("brown")
+  .color('brown')
   .attr({x: draw_x, y: draw_y, w: Game.scale , h: Game.scale });
 };
 
@@ -115,6 +117,6 @@ Game.draw_map_door = function(draw_x, draw_y) {
 
   Crafty.sprite("../images/Door.png", {wall:[0,0,Game.scale,Game.scale]});
   Crafty.e("2D, Canvas, Color, wall, tile")
-  .color("brown")
+  .color('brown')
   .attr({x: draw_x, y: draw_y, w: Game.scale , h: Game.scale });
 };

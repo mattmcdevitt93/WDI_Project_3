@@ -1,9 +1,10 @@
+'use strict';
 var Game = Game || {};
 
 Game.load_player = function(user) {
-  var players_parent = Game.data.child("users");
+  var players_parent = Game.data.child('users');
   Game.updateObject = {};
-  Game.updateObject["user_" + user] = Game.starting_position();
+  Game.updateObject['user_' + user] = Game.starting_position();
   players_parent.update(Game.updateObject); // Tells Firebase starting position of user
 };
 
@@ -14,14 +15,14 @@ Game.starting_position = function() {
 Game.draw_local_character = function(user) {
   Game.collision = true;
 
-  Crafty.sprite("../images/char_1.png", {player:[0,0,Game.scale,Game.scale]});
-  Game.character = Crafty.e("Collision, Canvas, Color, player")
-    .attr({x: user.current_pos[0] * Game.scale, y: user.current_pos[1] * Game.scale, w: Game.scale, h: Game.scale})
-    .checkHits('wall')
-    .bind("EnterFrame", Game.enter_frame)
-    .bind("ExitFrame", Game.exit_frame)
-    .bind("HitOn", Game.hit_wall)
-    .bind('KeyDown', Game.key_bindings);
+  Crafty.sprite('../images/char_1.png', {player:[0,0,Game.scale,Game.scale]});
+  Game.character = Crafty.e('Collision, Canvas, Color, player')
+  .attr({x: user.current_pos[0] * Game.scale, y: user.current_pos[1] * Game.scale, w: Game.scale, h: Game.scale})
+  .checkHits('wall')
+  .bind('EnterFrame', Game.enter_frame)
+  .bind('ExitFrame', Game.exit_frame)
+  .bind('HitOn', Game.hit_wall)
+  .bind('KeyDown', Game.key_bindings);
 };
 
 Game.enter_frame = function () {
@@ -41,22 +42,22 @@ Game.hit_wall = function(hitData) {
 };
 
 Game.update_firebase = function () {
-  var players_parent = Game.data.child("users");
-  Game.updateObject["user_" + Game.user_token] = {current_pos: [Game.character.x / Game.scale, Game.character.y / Game.scale, Game.stats.health]};
+  var players_parent = Game.data.child('users');
+  Game.updateObject['user_' + Game.user_token] = {current_pos: [Game.character.x / Game.scale, Game.character.y / Game.scale, Game.stats.health]};
   players_parent.update(Game.updateObject);
 };
 
 Game.move_test = function () {
   if(Game.move === 1) {
-        Game.character.x = Game.character.x - Game.scale;
-      } else if (Game.move === 2) {
-        Game.character.x = Game.character.x + Game.scale;
-      } else if (Game.move === 3) {
-        Game.character.y = Game.character.y - Game.scale;
-      } else if (Game.move === 4) {
-        Game.character.y = Game.character.y + Game.scale;
-      }
-    };
+    Game.character.x = Game.character.x - Game.scale;
+  } else if (Game.move === 2) {
+    Game.character.x = Game.character.x + Game.scale;
+  } else if (Game.move === 3) {
+    Game.character.y = Game.character.y - Game.scale;
+  } else if (Game.move === 4) {
+    Game.character.y = Game.character.y + Game.scale;
+  }
+};
 
 Game.move_resolve = function() {
   if(Game.move === 1 && Game.collision === false) {
@@ -124,9 +125,9 @@ Game.draw_firebase_char = function(snapshot) {
     var firebase = Game.firebase_char;
     console.log (player);
 
-    firebase[player] = Crafty.e("Canvas, Color, player")
+    firebase[player] = Crafty.e('Canvas, Color, player')
     .attr({x: player.current_pos[0] * Game.scale, y: player.current_pos[1] * Game.scale, w: Game.scale, h: Game.scale})
-    .color("blue");
+    .color('blue');
   }
 
 };

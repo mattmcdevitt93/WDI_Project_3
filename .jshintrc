@@ -11,12 +11,13 @@
   "newcap": true,
   "noarg": true,
   "quotmark": "single",
-  "undef": true,
+  "undef": false,
   "unused": true,
   "strict": false,
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "angular": false
+    "angular": false,
+    "crafty": false
   }
 }

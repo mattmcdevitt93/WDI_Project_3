@@ -1,4 +1,5 @@
-User = {}
+'use strict';
+var User = {}
 
 User.createUser = function () {
   console.log('create account');
