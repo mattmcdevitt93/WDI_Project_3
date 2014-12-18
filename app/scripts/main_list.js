@@ -77,7 +77,6 @@ function createRoom () {
     }
     console.log('New Room - ' + name + ' - ' + notNull);
     if (-1 === data.snapshot.indexOf(name) && notNull === false) {
-      Cookie.gameToken(name);
       var ref = 'https://resplendent-inferno-1504.firebaseio.com/' + name;
       data.data = new Firebase(ref);
       data.data.set({Password: password, Host: Cookie.getCookie('User')});

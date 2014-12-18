@@ -2,26 +2,26 @@
 var Cookie = {};
 
 Cookie.checkCookie = function() {
-  if ((Cookie.getCookie("User") === "null") || (Cookie.getCookie("User") === undefined) || (Cookie.getCookie("User") === null)) {
+  if ((Cookie.getCookie('User') === 'null') || (Cookie.getCookie('User') === undefined) || (Cookie.getCookie('User') === null)) {
     Cookie.generateName(); // change this once i get the ability to pull the next name from the back end
   } else {
-    console.log('ID already set at = ' + Cookie.getCookie('User'))
+    console.log('ID already set at = ' + Cookie.getCookie('User'));
   }
-}
+};
 
 Cookie.generateName = function() {
   // console.log(User.authData)
   if (!!User.authData) {
-    console.log('if')
+    console.log('if');
     var login = User.authData.password.email;
-    login = login.replace(/([.*+?^${}()|\[\]\/\\])/g, "");
-    login = login.replace(/(@)/g, "_");
-    login = login.replace(/(com)/g, "");
-    var user_id = "User=" + login;
+    login = login.replace(/([.*+?^${}()|\[\]\/\\])/g, '');
+    login = login.replace(/(@)/g, '_');
+    login = login.replace(/(com)/g, '');
+    var user_id = 'User=' + login;
   } else {
-    console.log('else')
-    var user_id = (Math.floor((Math.random() * 1000) + 1))
-    user_id = "User=" + user_id
+    console.log('else');
+    var user_id = (Math.floor((Math.random() * 1000) + 1));
+    user_id = 'User=' + user_id;
   }
   document.cookie = user_id;
 };
@@ -32,11 +32,11 @@ Cookie.getCookie = function(key){
 };
 
 Cookie.gameToken = function(game_id) {
-  if ((Cookie.getCookie("Game_id") === "null") || (Cookie.getCookie("Game_id") === undefined) || (Cookie.getCookie("Game_id") === null)) {
-    console.log('generate ID cookie')
-    document.cookie = "Game_ID=" + game_id;
+  if ((Cookie.getCookie('Game_id') !== 'null') || (Cookie.getCookie('Game_id') !== undefined) || (Cookie.getCookie('Game_id') !== null)) {
+    console.log('generate ID cookie');
+    document.cookie = 'Game_ID=' + game_id;
   } else {
-    console.log('ID already set at = ' + Cookie.getCookie('User'))
+    console.log('ID already set at = ' + Cookie.getCookie('User'));
   }
 };
 
