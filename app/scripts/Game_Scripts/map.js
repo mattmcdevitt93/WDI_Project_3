@@ -92,7 +92,7 @@ Game.draw_map_floor = function(draw_x, draw_y) {
   var r_tile = Math.floor(Math.random() * 3);
   // var r_tile = 2;
   // console.log(r_tile);
-  Crafty.sprite('../images/Floor_1.png', {floor:[(r_tile * Game.scale),0,Game.scale,Game.scale]});
+  Crafty.sprite('../../images/Floor_1.png', {floor:[(r_tile * Game.scale),0,Game.scale,Game.scale]});
   Crafty.e('2D, Canvas, Color, floor, tile')
   .color('grey')
   .attr({x: draw_x, y: draw_y, w: Game.scale , h: Game.scale });
