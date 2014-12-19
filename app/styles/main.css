@@ -48,6 +48,7 @@ div {
   background-color: #cccccc;
   min-height: 100px;
   border: 10px solid transparent;
+  border-radius: 5px;
 }
 
 .login_field {
