@@ -134,3 +134,10 @@ div {
   width: 48px;
   float: left;
 }
+
+#footer_text {
+  padding-top: 15px;
+  float: left;
+  padding-right: 5px;
+}
+
