@@ -6,11 +6,6 @@ Game.refresh_map = function(){
   Game.draw_map(Game.snapshot.map.map_data);
 };
 
-Game.refresh_stats = function(){
-  Crafty('stats').each(function() { this.destroy(); });
-  Game.draw_stats();
-};
-
 Game.draw_map = function(map) {
   Crafty.init((Game.width * Game.scale),(Game.height * Game.scale), document.getElementById('game'));
   Game.map_check(map);
@@ -36,16 +31,6 @@ Game.draw_sidebar = function() {
     }
   }
 // Game.draw_stats();
-};
-
-Game.draw_stats = function() {
-  Crafty.e('2D, Canvas, Color, stats')
-  .color('red')
-  .attr({x: 50, y: 200, w: Game.stats.health , h: Game.scale });
-
-  Crafty.e('2D, Canvas, Color, stats')
-  .color('grey')
-  .attr({x: 150, y: 200, w: (-1 * Game.stats.health) , h: Game.scale });
 };
 
 Game.draw_sel_col = function (map) {
@@ -92,14 +77,16 @@ Game.draw_map_floor = function(draw_x, draw_y) {
   var r_tile = Math.floor(Math.random() * 3);
   // var r_tile = 2;
   // console.log(r_tile);
-  Crafty.sprite('./images/Floor_1.14608657.png', {floor:[(r_tile * Game.scale),0,Game.scale,Game.scale]});
+  Crafty.sprite('./images/Floor_1.png', {floor:[(r_tile * Game.scale),0,Game.scale,Game.scale]});
+  // Crafty.sprite('./images/Floor_1.14608657.png', {floor:[(r_tile * Game.scale),0,Game.scale,Game.scale]});
   Crafty.e('2D, Canvas, Color, floor, tile')
   .color('grey')
   .attr({x: draw_x, y: draw_y, w: Game.scale , h: Game.scale });
 };
 
 Game.draw_sidebar_corner = function(draw_x, draw_y, r_tile) {
-  Crafty.sprite('./images/Sidebar_1.da9d308b.png', {sidebar:[(r_tile * Game.scale),0,Game.scale,Game.scale]});
+  Crafty.sprite('./images/Sidebar_1.png', {sidebar:[(r_tile * Game.scale),0,Game.scale,Game.scale]});
+  // Crafty.sprite('./images/Sidebar_1.da9d308b.png', {sidebar:[(r_tile * Game.scale),0,Game.scale,Game.scale]});
   Crafty.e('2D, Canvas, Color, sidebar')
   .color('brown')
   .attr({x: draw_x, y: draw_y, w: Game.scale , h: Game.scale });
@@ -107,7 +94,8 @@ Game.draw_sidebar_corner = function(draw_x, draw_y, r_tile) {
 
 Game.draw_map_wall = function(draw_x, draw_y) {
 
-  Crafty.sprite('./images/Wall_1.74c8aec9.png', {wall:[0,0,Game.scale,Game.scale]});
+  Crafty.sprite('./images/Wall_1.png', {wall:[0,0,Game.scale,Game.scale]});
+  // Crafty.sprite('./images/Wall_1.74c8aec9.png', {wall:[0,0,Game.scale,Game.scale]});
   Crafty.e('2D, Canvas, Color, wall, tile')
   .color('brown')
   .attr({x: draw_x, y: draw_y, w: Game.scale , h: Game.scale });
@@ -115,7 +103,8 @@ Game.draw_map_wall = function(draw_x, draw_y) {
 
 Game.draw_map_door = function(draw_x, draw_y) {
 
-  Crafty.sprite('./images/Door.0a3acd2e.png', {wall:[0,0,Game.scale,Game.scale]});
+  Crafty.sprite('./images/Door.png', {wall:[0,0,Game.scale,Game.scale]});
+  // Crafty.sprite('./images/Door.0a3acd2e.png', {wall:[0,0,Game.scale,Game.scale]});
   Crafty.e('2D, Canvas, Color, wall, tile')
   .color('brown')
   .attr({x: draw_x, y: draw_y, w: Game.scale , h: Game.scale });

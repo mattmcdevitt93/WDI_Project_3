@@ -32,7 +32,6 @@ Cookie.getCookie = function(key){
 };
 
 Cookie.gameToken = function(game_id) {
-  debugger;
   console.log('generate ID cookie' + game_id);
   if ((Cookie.getCookie('Game_id') === 'null') || (Cookie.getCookie('Game_id') === undefined) || (Cookie.getCookie('Game_id') === null)) {
     // var game_token = 'Game_ID=' + game_id;

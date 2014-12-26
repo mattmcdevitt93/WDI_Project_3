@@ -15,7 +15,8 @@ Game.starting_position = function() {
 Game.draw_local_character = function(user) {
   Game.collision = true;
 
-  Crafty.sprite('./images/Char_1.38f3cfb6.png', {player:[0,0,Game.scale,Game.scale]});
+  Crafty.sprite('./images/Char_1.png', {player:[0,0,Game.scale,Game.scale]});
+  // Crafty.sprite('./images/Char_1.38f3cfb6.png', {player:[0,0,Game.scale,Game.scale]});
   Game.character = Crafty.e('Collision, Canvas, Color, player')
   .attr({x: user.current_pos[0] * Game.scale, y: user.current_pos[1] * Game.scale, w: Game.scale, h: Game.scale})
   .checkHits('wall')
@@ -45,6 +46,7 @@ Game.update_firebase = function () {
   var players_parent = Game.data.child('users');
   Game.updateObject['user_' + Game.user_token] = {current_pos: [Game.character.x / Game.scale, Game.character.y / Game.scale, Game.stats.health]};
   players_parent.update(Game.updateObject);
+  Game.refresh_stats();
 };
 
 Game.move_test = function () {
@@ -92,7 +94,6 @@ Game.key_bindings = function(e) {
     Game.move = 5;
     Game.stats.health = Game.stats.health - 5;
     console.log(Game.stats.health);
-    Game.refresh_stats();
   }
   Game.move_test();
 };
@@ -126,15 +127,46 @@ Game.draw_firebase_char = function(snapshot) {
     console.log (player);
 
     firebase[player] = Crafty.e('Canvas, Color, player')
-    .attr({x: player.current_pos[0] * Game.scale, y: player.current_pos[1] * Game.scale, w: Game.scale, h: Game.scale})
-    .color('blue');
+    .attr({x: player.current_pos[0] * Game.scale, y: player.current_pos[1] * Game.scale, w: Game.scale, h: Game.scale});
   }
+  Game.health_bars(1, player.current_pos[0] * Game.scale, player.current_pos[1] * Game.scale, player.current_pos[2]);
+};
 
+Game.draw_stats = function() {
+  Crafty.e('2D, Canvas, Color, stats')
+  .color('white')
+  .attr({x: 50, y: 200, w: 100 , h: Game.scale });
+
+  Crafty.e('2D, Canvas, Color, stats')
+  .color('red')
+  .attr({x: 50, y: 200, w: Game.stats.health , h: Game.scale });
+};
+
+Game.health_bars = function (unit, draw_x, draw_y, health) {
+  Crafty.e('2D, Canvas, Color, health_token, Token')
+    .color('white')
+    .attr({x: draw_x, y: draw_y - 1, w: Game.scale - 5, h: 3 });
+    var health_ratio = health/100;
+  Crafty.e('2D, Canvas, Color, health_token, Token')
+  .color('red')
+  .attr({x: draw_x, y: draw_y - 1, w: (Game.scale - 5) * health_ratio, h: 3 });
+  Crafty.sprite('./images/Shield_token.png', {Shield_token:[(unit*10),0,10,10]});
+  Crafty.e('Canvas, Color, Shield_token, Token')
+  .attr({x: draw_x - 3, y: draw_y - 2, w: Game.scale/3 , h: Game.scale/3 });
+};
+
+Game.refresh_stats = function(){
+  Crafty('stats').each(function() { this.destroy(); });
+  Game.draw_stats();
 };
 
 Game.refresh = function(user){
   Crafty('player').each(function(player) {
     this.destroy();
   });
+  Crafty('Token').each(function(Shield_token) {
+    this.destroy();
+  });
   Game.draw_local_character(user);
+  Game.health_bars(0, (user.current_pos[0] * Game.scale), (user.current_pos[1] * Game.scale), Game.stats.health);
 };

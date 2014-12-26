@@ -36,7 +36,7 @@ Game.initialize = function() {
 };
 
 Game.firebase_push = function() {
-  Game.data.once("value", function(snapshot) {
+  Game.data.once('value', function(snapshot) {
     Game.snapshot = snapshot.val();
     var map_ref = Game.data.child("map");
     map_ref.set({map_data: Game.map});
@@ -48,7 +48,7 @@ Game.firebase_push = function() {
     Game.load_player(Game.user_token);
   });
 
-  Game.data.on("value", function(snapshot) {
+  Game.data.on('value', function(snapshot) {
     Game.snapshot = snapshot.val();
     var user = Game.snapshot["users"]['user_' + Game.user_token];
     Game.draw_local_character(user);
