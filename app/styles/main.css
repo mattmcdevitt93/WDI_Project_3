@@ -97,6 +97,8 @@ div {
   width: 200px;
   float: left;
   margin-right: 10px;
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
 }
 
 #login_tools {
