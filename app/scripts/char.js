@@ -15,8 +15,8 @@ Game.starting_position = function() {
 Game.draw_local_character = function(user) {
   Game.collision = true;
 
-  Crafty.sprite('./images/Char_1.png', {player:[0,0,Game.scale,Game.scale]});
-  // Crafty.sprite('./images/Char_1.38f3cfb6.png', {player:[0,0,Game.scale,Game.scale]});
+  // Crafty.sprite('./images/Char_1.png', {player:[0,0,Game.scale,Game.scale]});
+  Crafty.sprite('./images/Char_1.38f3cfb6.png', {player:[0,0,Game.scale,Game.scale]});
   Game.character = Crafty.e('Collision, Canvas, Color, player')
   .attr({x: user.current_pos[0] * Game.scale, y: user.current_pos[1] * Game.scale, w: Game.scale, h: Game.scale})
   .checkHits('wall')
@@ -128,29 +128,33 @@ Game.draw_firebase_char = function(snapshot) {
 
     firebase[player] = Crafty.e('Canvas, Color, player')
     .attr({x: player.current_pos[0] * Game.scale, y: player.current_pos[1] * Game.scale, w: Game.scale, h: Game.scale});
+    Game.health_bars(1, player.current_pos[0] * Game.scale, player.current_pos[1] * Game.scale, player.current_pos[2]);
   }
-  Game.health_bars(1, player.current_pos[0] * Game.scale, player.current_pos[1] * Game.scale, player.current_pos[2]);
 };
 
 Game.draw_stats = function() {
   Crafty.e('2D, Canvas, Color, stats')
   .color('white')
-  .attr({x: 50, y: 200, w: 100 , h: Game.scale });
+  .attr({x: 50, y: 300, w: 100 , h: Game.scale });
 
   Crafty.e('2D, Canvas, Color, stats')
   .color('red')
-  .attr({x: 50, y: 200, w: Game.stats.health , h: Game.scale });
+  .attr({x: 50, y: 300, w: Game.stats.health , h: Game.scale });
+
+  Crafty.e("2D, Canvas, Text, stats").attr({ x: 50, y: 285 }).text("Health");
+
 };
 
 Game.health_bars = function (unit, draw_x, draw_y, health) {
   Crafty.e('2D, Canvas, Color, health_token, Token')
     .color('white')
-    .attr({x: draw_x, y: draw_y - 1, w: Game.scale - 5, h: 3 });
+    .attr({x: draw_x + 5, y: draw_y - 1, w: Game.scale - 5, h: 3 });
     var health_ratio = health/100;
   Crafty.e('2D, Canvas, Color, health_token, Token')
   .color('red')
-  .attr({x: draw_x, y: draw_y - 1, w: (Game.scale - 5) * health_ratio, h: 3 });
-  Crafty.sprite('./images/Shield_token.png', {Shield_token:[(unit*10),0,10,10]});
+  .attr({x: draw_x + 5, y: draw_y - 1, w: (Game.scale - 5) * health_ratio, h: 3 });
+  // Crafty.sprite('./images/Shield_token.png', {Shield_token:[(unit*10),0,10,10]});
+  Crafty.sprite('./images/Shield_token.64d2ec9b.png', {Shield_token:[(unit*10),0,10,10]});
   Crafty.e('Canvas, Color, Shield_token, Token')
   .attr({x: draw_x - 3, y: draw_y - 2, w: Game.scale/3 , h: Game.scale/3 });
 };

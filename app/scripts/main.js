@@ -43,6 +43,7 @@ Game.firebase_push = function() {
 
   Game.stats = {};
   Game.stats.health = 100;
+  Game.stats.mana = 100;
 
     Game.draw_map(Game.snapshot.map.map_data);
     Game.load_player(Game.user_token);
